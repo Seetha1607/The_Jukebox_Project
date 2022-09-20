@@ -22,14 +22,19 @@ public class DatabaseService {
     // A variable declaration.
     private Connection connection;
 
-    public Connection getConnection() {
-        return connection;
-    }
-
     public DatabaseService() {
         this.connection = null;
     }
 
+    public Connection getConnection() {
+        return connection;
+    }
+
+    /**
+     * It connects to the database.
+     *
+     * @return A boolean value.
+     */
     public boolean connect() throws ClassNotFoundException, SQLException {
         // 1. load the jdbc driver into the program memory
         // Class.forName("com.mysql.cj.jdbc.Driver");
@@ -41,6 +46,9 @@ public class DatabaseService {
         return connection != null;
     }
 
+    /**
+     * If the connection is not null, print "Connected to the database", otherwise print "Not connected to the database"
+     */
     public void printConnectionStatus() {
         if (connection != null) {
             System.out.println("Connected to the database");
