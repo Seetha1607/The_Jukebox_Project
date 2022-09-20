@@ -8,6 +8,7 @@
 package com.niit.jdp.service.database;
 
 import java.sql.Connection;
+import java.sql.SQLException;
 
 public class DatabaseService {
     // Declaring a variable.
@@ -26,6 +27,10 @@ public class DatabaseService {
 
     public DatabaseService() {
         this.connection = null;
+    }
+
+    public boolean connect() throws ClassNotFoundException, SQLException {
+        return false;
     }
 
 }
