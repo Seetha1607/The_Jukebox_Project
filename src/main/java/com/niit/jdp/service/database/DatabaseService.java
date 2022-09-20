@@ -20,5 +20,7 @@ public class DatabaseService {
     // A variable declaration.
     private Connection connection;
 
-
+    public Connection getConnection() {
+        return connection;
+    }
 }
