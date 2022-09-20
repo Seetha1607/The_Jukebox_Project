@@ -7,5 +7,10 @@
 
 package com.niit.jdp.model;
 
+import java.time.LocalTime;
+
 public class Song {
+    private int serialNumber;
+    private String songName;
+    private LocalTime duration;
 }
