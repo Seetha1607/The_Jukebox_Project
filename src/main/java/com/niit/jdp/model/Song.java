@@ -13,4 +13,13 @@ public class Song {
     private int serialNumber;
     private String songName;
     private LocalTime duration;
+
+    public Song() {
+    }
+
+    public Song(int serialNumber, String songName, LocalTime duration) {
+        this.serialNumber = serialNumber;
+        this.songName = songName;
+        this.duration = duration;
+    }
 }
