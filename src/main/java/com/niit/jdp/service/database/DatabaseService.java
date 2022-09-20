@@ -8,4 +8,11 @@
 package com.niit.jdp.service.database;
 
 public class DatabaseService {
+    // Declaring a variable.
+    private static final String URL = "jdbc:mysql://localhost:3306/school";
+    // Declaring a variable.
+    private static final String USERNAME = "root";
+    // A variable declaration.
+    private static final String PASSWORD = "Seetha@007";
+
 }
