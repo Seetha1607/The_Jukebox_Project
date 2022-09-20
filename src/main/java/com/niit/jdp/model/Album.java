@@ -22,4 +22,28 @@ public class Album {
         this.genreOfAlbum = genreOfAlbum;
         this.songs = songs;
     }
+
+    public String getNameOfAlbum() {
+        return nameOfAlbum;
+    }
+
+    public void setNameOfAlbum(String nameOfAlbum) {
+        this.nameOfAlbum = nameOfAlbum;
+    }
+
+    public String getGenreOfAlbum() {
+        return genreOfAlbum;
+    }
+
+    public void setGenreOfAlbum(String genreOfAlbum) {
+        this.genreOfAlbum = genreOfAlbum;
+    }
+
+    public List<Song> getSongs() {
+        return songs;
+    }
+
+    public void setSongs(List<Song> songs) {
+        this.songs = songs;
+    }
 }
