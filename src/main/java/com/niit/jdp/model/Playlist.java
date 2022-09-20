@@ -8,6 +8,8 @@
 package com.niit.jdp.model;
 
 import java.util.List;
+import java.util.Objects;
+import java.util.StringJoiner;
 
 public class Playlist {
     private List<Album> album;
@@ -25,5 +27,25 @@ public class Playlist {
 
     public void setAlbum(List<Album> album) {
         this.album = album;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Playlist playlist = (Playlist) o;
+        return Objects.equals(album, playlist.album);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(album);
+    }
+
+    @Override
+    public String toString() {
+        return new StringJoiner(", ", Playlist.class.getSimpleName() + "[", "]")
+                .add("album=" + album)
+                .toString();
     }
 }
