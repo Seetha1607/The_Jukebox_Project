@@ -9,6 +9,7 @@ package com.niit.jdp.model;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.StringJoiner;
 
 public class Album {
     private String nameOfAlbum;
@@ -59,5 +60,14 @@ public class Album {
     @Override
     public int hashCode() {
         return Objects.hash(nameOfAlbum, genreOfAlbum, songs);
+    }
+
+    @Override
+    public String toString() {
+        return new StringJoiner(", ", Album.class.getSimpleName() + "[", "]")
+                .add("nameOfAlbum='" + nameOfAlbum + "'")
+                .add("genreOfAlbum='" + genreOfAlbum + "'")
+                .add("songs=" + songs)
+                .toString();
     }
 }
