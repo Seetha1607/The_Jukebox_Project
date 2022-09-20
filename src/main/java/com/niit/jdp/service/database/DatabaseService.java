@@ -41,4 +41,6 @@ public class DatabaseService {
         return connection != null;
     }
 
+    public void printConnectionStatus() {
+    }
 }
