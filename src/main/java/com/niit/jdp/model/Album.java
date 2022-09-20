@@ -64,10 +64,6 @@ public class Album {
 
     @Override
     public String toString() {
-        return new StringJoiner(", ", Album.class.getSimpleName() + "[", "]")
-                .add("nameOfAlbum='" + nameOfAlbum + "'")
-                .add("genreOfAlbum='" + genreOfAlbum + "'")
-                .add("songs=" + songs)
-                .toString();
+        return new StringJoiner(", ", Album.class.getSimpleName() + "[", "]").add("nameOfAlbum='" + nameOfAlbum + "'").add("genreOfAlbum='" + genreOfAlbum + "'").add("songs=" + songs).toString();
     }
 }
