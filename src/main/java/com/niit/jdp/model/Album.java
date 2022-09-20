@@ -7,5 +7,10 @@
 
 package com.niit.jdp.model;
 
+import java.util.List;
+
 public class Album {
+    private String nameOfAlbum;
+    private String genreOfAlbum;
+    private List<Song> songs;
 }
