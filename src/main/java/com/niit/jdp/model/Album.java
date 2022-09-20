@@ -8,6 +8,7 @@
 package com.niit.jdp.model;
 
 import java.util.List;
+import java.util.Objects;
 
 public class Album {
     private String nameOfAlbum;
@@ -45,5 +46,18 @@ public class Album {
 
     public void setSongs(List<Song> songs) {
         this.songs = songs;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Album album = (Album) o;
+        return Objects.equals(nameOfAlbum, album.nameOfAlbum) && Objects.equals(genreOfAlbum, album.genreOfAlbum) && Objects.equals(songs, album.songs);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(nameOfAlbum, genreOfAlbum, songs);
     }
 }
