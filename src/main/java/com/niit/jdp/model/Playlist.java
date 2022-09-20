@@ -18,4 +18,12 @@ public class Playlist {
     public Playlist(List<Album> album) {
         this.album = album;
     }
+
+    public List<Album> getAlbum() {
+        return album;
+    }
+
+    public void setAlbum(List<Album> album) {
+        this.album = album;
+    }
 }
