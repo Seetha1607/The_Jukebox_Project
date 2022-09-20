@@ -8,6 +8,7 @@
 package com.niit.jdp.model;
 
 import java.time.LocalTime;
+import java.util.Objects;
 
 public class Song {
     private int serialNumber;
@@ -45,5 +46,18 @@ public class Song {
 
     public void setDuration(LocalTime duration) {
         this.duration = duration;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Song song = (Song) o;
+        return serialNumber == song.serialNumber && Objects.equals(songName, song.songName) && Objects.equals(duration, song.duration);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(serialNumber, songName, duration);
     }
 }
