@@ -10,6 +10,12 @@ package com.niit.jdp.model;
 import java.util.List;
 
 public class Playlist {
-
     private List<Album> album;
+
+    public Playlist() {
+    }
+
+    public Playlist(List<Album> album) {
+        this.album = album;
+    }
 }
