@@ -7,5 +7,9 @@
 
 package com.niit.jdp.model;
 
+import java.util.List;
+
 public class Playlist {
+
+    private List<Album> album;
 }
