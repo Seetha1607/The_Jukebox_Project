@@ -9,6 +9,7 @@ package com.niit.jdp.model;
 
 import java.time.LocalTime;
 import java.util.Objects;
+import java.util.StringJoiner;
 
 public class Song {
     private int serialNumber;
@@ -59,5 +60,14 @@ public class Song {
     @Override
     public int hashCode() {
         return Objects.hash(serialNumber, songName, duration);
+    }
+
+    @Override
+    public String toString() {
+        return new StringJoiner(", ", Song.class.getSimpleName() + "[", "]")
+                .add("serialNumber=" + serialNumber)
+                .add("songName='" + songName + "'")
+                .add("duration=" + duration)
+                .toString();
     }
 }
