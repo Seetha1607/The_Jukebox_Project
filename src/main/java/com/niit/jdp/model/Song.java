@@ -12,25 +12,25 @@ import java.util.Objects;
 import java.util.StringJoiner;
 
 public class Song {
-    private int serialNumber;
+    private int songId;
     private String songName;
     private LocalTime duration;
 
     public Song() {
     }
 
-    public Song(int serialNumber, String songName, LocalTime duration) {
-        this.serialNumber = serialNumber;
+    public Song(int songId, String songName, LocalTime duration) {
+        this.songId = songId;
         this.songName = songName;
         this.duration = duration;
     }
 
-    public int getSerialNumber() {
-        return serialNumber;
+    public int getSongId() {
+        return songId;
     }
 
-    public void setSerialNumber(int serialNumber) {
-        this.serialNumber = serialNumber;
+    public void setSongId(int songId) {
+        this.songId = songId;
     }
 
     public String getSongName() {
@@ -54,18 +54,18 @@ public class Song {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Song song = (Song) o;
-        return serialNumber == song.serialNumber && Objects.equals(songName, song.songName) && Objects.equals(duration, song.duration);
+        return songId == song.songId && Objects.equals(songName, song.songName) && Objects.equals(duration, song.duration);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(serialNumber, songName, duration);
+        return Objects.hash(songId, songName, duration);
     }
 
     @Override
     public String toString() {
         return new StringJoiner(", ", Song.class.getSimpleName() + "[", "]")
-                .add("serialNumber=" + serialNumber)
+                .add("songId=" + songId)
                 .add("songName='" + songName + "'")
                 .add("duration=" + duration)
                 .toString();
