@@ -12,23 +12,25 @@ import java.util.Objects;
 import java.util.StringJoiner;
 
 public class Playlist {
+    private int playlistId;
     private String playlistName;
     private List<Album> album;
 
     public Playlist() {
     }
 
-    public Playlist(String playlistName, List<Album> album) {
+    public Playlist(int playlistId, String playlistName, List<Album> album) {
+        this.playlistId = playlistId;
         this.playlistName = playlistName;
         this.album = album;
     }
 
-    public List<Album> getAlbum() {
-        return album;
+    public int getPlaylistId() {
+        return playlistId;
     }
 
-    public void setAlbum(List<Album> album) {
-        this.album = album;
+    public void setPlaylistId(int playlistId) {
+        this.playlistId = playlistId;
     }
 
     public String getPlaylistName() {
@@ -39,22 +41,31 @@ public class Playlist {
         this.playlistName = playlistName;
     }
 
+    public List<Album> getAlbum() {
+        return album;
+    }
+
+    public void setAlbum(List<Album> album) {
+        this.album = album;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Playlist playlist = (Playlist) o;
-        return Objects.equals(playlistName, playlist.playlistName) && Objects.equals(album, playlist.album);
+        return playlistId == playlist.playlistId && Objects.equals(playlistName, playlist.playlistName) && Objects.equals(album, playlist.album);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(playlistName, album);
+        return Objects.hash(playlistId, playlistName, album);
     }
 
     @Override
     public String toString() {
         return new StringJoiner(", ", Playlist.class.getSimpleName() + "[", "]")
+                .add("playlistId=" + playlistId)
                 .add("playlistName='" + playlistName + "'")
                 .add("album=" + album)
                 .toString();
