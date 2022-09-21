@@ -13,7 +13,7 @@ import java.sql.SQLException;
 
 public class DatabaseService {
     // Declaring a variable.
-    private static final String URL = "jdbc:mysql://localhost:3306/school";
+    private static final String URL = "jdbc:mysql://localhost:3306/jukebox";
     // Declaring a variable.
     private static final String USERNAME = "root";
     // A variable declaration.
