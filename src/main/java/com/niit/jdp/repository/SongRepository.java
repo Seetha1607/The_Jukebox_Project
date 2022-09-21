@@ -17,7 +17,7 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SongRepository implements Repository<Song> {
+public class SongRepository {
 
     public List<Song> getAll(Connection connection) throws SQLException {
 
@@ -34,5 +34,9 @@ public class SongRepository implements Repository<Song> {
             }
         }
         return songsList;
+    }
+
+    public LocalTime remainingDuration(Connection connection, LocalTime duration) {
+        return null;
     }
 }
