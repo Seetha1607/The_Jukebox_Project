@@ -2,7 +2,7 @@ create DATABASE IF NOT EXISTS `jukebox`;
 
 USE `jukebox`;
 
-create TABLE IF NOT EXISTS `jukebox`.`song`
+create TABLE IF NOT EXISTS `jukebox`.`song`;
 (
   `serial_number` int not null primary key auto_increment,
   `song_name` varchar(60) not null,
@@ -166,6 +166,56 @@ insert into `jukebox`.`album` (`album_id`, `ablum_name`, `genre`, `songs`) VALUE
    '5'
 );
 
-select album.album_id as 'Album_ID', album.ablum_name AS 'Album_Name', song.song_name AS 'Song_Name' FROM album
+SELECT album.album_id AS 'Album_ID', album.ablum_name AS 'Album_Name', album.genre AS 'Genre', song.song_name AS 'Song_Name' FROM album
 JOIN song ON (song.serial_number = album.songs);
+
+--created a new table called playlist:
+CREATE TABLE IF NOT EXISTS `playlist`
+(
+   `playlist_id` int not null primary key auto_increment,
+   `playlist_name` varchar(30) not null,
+   `albums` int not null,
+    FOREIGN KEY(albums) REFERENCES album(album_id)
+);
+--Inserting datas into the playlist table:
+INSERT INTO `jukebox`.`playlist` (`playlist_id`, `playlist_name`, `albums`) VALUES ('1', 'Pop playlist', '1');
+
+INSERT INTO `jukebox`.`playlist` (`playlist_id`, `playlist_name`, `albums`) VALUES ('2', 'Pop playlist', '3');
+
+INSERT INTO `jukebox`.`playlist` (`playlist_id`, `playlist_name`, `albums`) VALUES ('3', 'Pop playlist', '4');
+
+INSERT INTO `jukebox`.`playlist` (`playlist_id`, `playlist_name`, `albums`) VALUES ('4', 'Pop playlist', '5');
+
+INSERT INTO `jukebox`.`playlist` (`playlist_id`, `playlist_name`, `albums`) VALUES ('5', 'Pop playlist', '6');
+
+INSERT INTO `jukebox`.`playlist` (`playlist_id`, `playlist_name`, `albums`) VALUES ('6', 'Soul playlist', '2');
+
+INSERT INTO `jukebox`.`playlist` (`playlist_id`, `playlist_name`, `albums`) VALUES ('7', 'Soul playlist', '7');
+
+INSERT INTO `jukebox`.`playlist` (`playlist_id`, `playlist_name`, `albums`) VALUES ('8', 'Soul playlist', '8');
+
+INSERT INTO `jukebox`.`playlist` (`playlist_id`, `playlist_name`, `albums`) VALUES ('9', 'Soul playlist', '9');
+
+INSERT INTO `jukebox`.`playlist` (`playlist_id`, `playlist_name`, `albums`) VALUES ('10', 'Soul playlist', '10');
+
+INSERT INTO `jukebox`.`playlist` (`playlist_id`, `playlist_name`, `albums`) VALUES ('11', 'Fusion playlist', '11');
+
+INSERT INTO `jukebox`.`playlist` (`playlist_id`, `playlist_name`, `albums`) VALUES ('12', 'Fusion playlist', '12');
+
+INSERT INTO `jukebox`.`playlist` (`playlist_id`, `playlist_name`, `albums`) VALUES ('13', 'Fusion playlist', '13');
+
+INSERT INTO `jukebox`.`playlist` (`playlist_id`, `playlist_name`, `albums`) VALUES ('14', 'Fusion playlist', '14');
+
+INSERT INTO `jukebox`.`playlist` (`playlist_id`, `playlist_name`, `albums`) VALUES ('15', 'Fusion playlist', '15');
+
+--Selecting playlist according to the album name:
+SELECT playlist.playlist_id AS 'Playlist ID', playlist.playlist_name AS 'Playlist Name', album.ablum_name AS 'Album Name' FROM playlist
+JOIN album ON (album_id = playlist.albums);
+
+--Catalogue to show user to choose the playlist to play songs:
+SELECT playlist.playlist_id AS 'Playlist IDs', playlist.playlist_name AS 'Playlist Names', album.ablum_name AS 'Album Names', song.song_name AS 'Song Names' FROM playlist
+JOIN album ON (album_id = playlist.albums)
+JOIN song ON (serial_number = album.songs);
+
+
 
