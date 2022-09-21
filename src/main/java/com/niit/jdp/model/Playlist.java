@@ -12,12 +12,14 @@ import java.util.Objects;
 import java.util.StringJoiner;
 
 public class Playlist {
+    private String playlistName;
     private List<Album> album;
 
     public Playlist() {
     }
 
-    public Playlist(List<Album> album) {
+    public Playlist(String playlistName, List<Album> album) {
+        this.playlistName = playlistName;
         this.album = album;
     }
 
@@ -29,22 +31,31 @@ public class Playlist {
         this.album = album;
     }
 
+    public String getPlaylistName() {
+        return playlistName;
+    }
+
+    public void setPlaylistName(String playlistName) {
+        this.playlistName = playlistName;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Playlist playlist = (Playlist) o;
-        return Objects.equals(album, playlist.album);
+        return Objects.equals(playlistName, playlist.playlistName) && Objects.equals(album, playlist.album);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(album);
+        return Objects.hash(playlistName, album);
     }
 
     @Override
     public String toString() {
         return new StringJoiner(", ", Playlist.class.getSimpleName() + "[", "]")
+                .add("playlistName='" + playlistName + "'")
                 .add("album=" + album)
                 .toString();
     }
