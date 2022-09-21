@@ -9,17 +9,16 @@ package com.niit.jdp.model;
 
 import java.util.List;
 import java.util.Objects;
-import java.util.StringJoiner;
 
 public class Playlist {
     private int playlistId;
     private String playlistName;
-    private List<Album> album;
+    private List<Song> album;
 
     public Playlist() {
     }
 
-    public Playlist(int playlistId, String playlistName, List<Album> album) {
+    public Playlist(int playlistId, String playlistName, List<Song> album) {
         this.playlistId = playlistId;
         this.playlistName = playlistName;
         this.album = album;
@@ -41,11 +40,11 @@ public class Playlist {
         this.playlistName = playlistName;
     }
 
-    public List<Album> getAlbum() {
+    public List<Song> getAlbum() {
         return album;
     }
 
-    public void setAlbum(List<Album> album) {
+    public void setAlbum(List<Song> album) {
         this.album = album;
     }
 
@@ -60,14 +59,5 @@ public class Playlist {
     @Override
     public int hashCode() {
         return Objects.hash(playlistId, playlistName, album);
-    }
-
-    @Override
-    public String toString() {
-        return new StringJoiner(", ", Playlist.class.getSimpleName() + "[", "]")
-                .add("playlistId=" + playlistId)
-                .add("playlistName='" + playlistName + "'")
-                .add("album=" + album)
-                .toString();
     }
 }
