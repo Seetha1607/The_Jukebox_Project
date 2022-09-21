@@ -71,3 +71,101 @@ insert into `jukebox`.`song` (`serial_number`, `song_name`, `duration`) VALUES
 
 --Select all details from table:
 select * from jukebox.song;
+
+--create table called album:
+create TABLE IF NOT EXISTS `album`
+(
+   `album_id` int not null primary key auto_increment,
+   `ablum_name` varchar(45) not null,
+   `genre` varchar(20) not null,
+   `songs` int not null,
+    FOREIGN KEY(songs) REFERENCES song(serial_number)
+);
+
+--Insert albums accordingly:
+insert into `jukebox`.`album` (`album_id`, `ablum_name`, `genre`, `songs`) VALUES
+(
+   '4',
+   'Pop Album',
+   'Pop',
+   '15'
+);
+
+insert into `jukebox`.`album` (`album_id`, `ablum_name`, `genre`, `songs`) VALUES
+(
+   '6',
+   'Pop Album',
+   'Pop',
+   '11'
+);
+
+insert into `jukebox`.`album` (`album_id`, `ablum_name`, `genre`, `songs`) VALUES
+(
+   '7',
+   'Soul Album',
+   'Soul',
+   '3'
+);
+
+insert into `jukebox`.`album` (`album_id`, `ablum_name`, `genre`, `songs`) VALUES
+(
+   '8',
+   'Soul Album',
+   'Soul',
+   '9'
+);
+
+insert into `jukebox`.`album` (`album_id`, `ablum_name`, `genre`, `songs`) VALUES
+(
+   '9',
+   'Soul Album',
+   'Soul',
+   '13'
+);
+
+insert into `jukebox`.`album` (`album_id`, `ablum_name`, `genre`, `songs`) VALUES
+(
+   '10',
+   'Soul Album',
+   'Soul',
+   '10'
+);
+insert into `jukebox`.`album` (`album_id`, `ablum_name`, `genre`, `songs`) VALUES
+(
+   '11',
+   'Fusion Album',
+   'Fusion',
+   '7'
+);
+insert into `jukebox`.`album` (`album_id`, `ablum_name`, `genre`, `songs`) VALUES
+(
+   '12',
+   'Fusion Album',
+   'Fusion',
+   '14'
+);
+insert into `jukebox`.`album` (`album_id`, `ablum_name`, `genre`, `songs`) VALUES
+(
+   '13',
+   'Fusion Album',
+   'Fusion',
+   '6'
+);
+insert into `jukebox`.`album` (`album_id`, `ablum_name`, `genre`, `songs`) VALUES
+(
+   '14',
+   'Fusion Album',
+   'Fusion',
+   '8'
+);
+insert into `jukebox`.`album` (`album_id`, `ablum_name`, `genre`, `songs`) VALUES
+(
+   '15',
+   'Fusion Album',
+   'Fusion',
+   '5'
+);
+
+select album.album_id as 'Album_ID', album.ablum_name AS 'Album_Name', song.song_name AS 'Song_Name' FROM album
+JOIN song ON (song.serial_number = album.songs);
+
