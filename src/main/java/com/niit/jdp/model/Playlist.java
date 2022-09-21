@@ -9,19 +9,20 @@ package com.niit.jdp.model;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.StringJoiner;
 
 public class Playlist {
     private int playlistId;
     private String playlistName;
-    private List<Song> album;
+    private List<Song> songs;
 
     public Playlist() {
     }
 
-    public Playlist(int playlistId, String playlistName, List<Song> album) {
+    public Playlist(int playlistId, String playlistName, List<Song> songs) {
         this.playlistId = playlistId;
         this.playlistName = playlistName;
-        this.album = album;
+        this.songs = songs;
     }
 
     public int getPlaylistId() {
@@ -40,12 +41,12 @@ public class Playlist {
         this.playlistName = playlistName;
     }
 
-    public List<Song> getAlbum() {
-        return album;
+    public List<Song> getSongs() {
+        return songs;
     }
 
-    public void setAlbum(List<Song> album) {
-        this.album = album;
+    public void setSongs(List<Song> songs) {
+        this.songs = songs;
     }
 
     @Override
@@ -53,11 +54,20 @@ public class Playlist {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Playlist playlist = (Playlist) o;
-        return playlistId == playlist.playlistId && Objects.equals(playlistName, playlist.playlistName) && Objects.equals(album, playlist.album);
+        return playlistId == playlist.playlistId && Objects.equals(playlistName, playlist.playlistName) && Objects.equals(songs, playlist.songs);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(playlistId, playlistName, album);
+        return Objects.hash(playlistId, playlistName, songs);
+    }
+
+    @Override
+    public String toString() {
+        return new StringJoiner(", ", Playlist.class.getSimpleName() + "[", "]")
+                .add("playlistId=" + playlistId)
+                .add("playlistName='" + playlistName + "'")
+                .add("songs=" + songs)
+                .toString();
     }
 }
