@@ -7,21 +7,24 @@
 
 package com.niit.jdp.model;
 
-import java.time.LocalTime;
 import java.util.Objects;
 import java.util.StringJoiner;
 
 public class Song {
     private int songId;
     private String songName;
-    private LocalTime duration;
+    private String artistName;
+    private String genre;
+    private String duration;
 
     public Song() {
     }
 
-    public Song(int songId, String songName, LocalTime duration) {
+    public Song(int songId, String songName, String artistName, String genre, String duration) {
         this.songId = songId;
         this.songName = songName;
+        this.artistName = artistName;
+        this.genre = genre;
         this.duration = duration;
     }
 
@@ -41,11 +44,27 @@ public class Song {
         this.songName = songName;
     }
 
-    public LocalTime getDuration() {
+    public String getArtistName() {
+        return artistName;
+    }
+
+    public void setArtistName(String artistName) {
+        this.artistName = artistName;
+    }
+
+    public String getGenre() {
+        return genre;
+    }
+
+    public void setGenre(String genre) {
+        this.genre = genre;
+    }
+
+    public String getDuration() {
         return duration;
     }
 
-    public void setDuration(LocalTime duration) {
+    public void setDuration(String duration) {
         this.duration = duration;
     }
 
@@ -54,12 +73,12 @@ public class Song {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Song song = (Song) o;
-        return songId == song.songId && Objects.equals(songName, song.songName) && Objects.equals(duration, song.duration);
+        return songId == song.songId && Objects.equals(songName, song.songName) && Objects.equals(artistName, song.artistName) && Objects.equals(genre, song.genre) && Objects.equals(duration, song.duration);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(songId, songName, duration);
+        return Objects.hash(songId, songName, artistName, genre, duration);
     }
 
     @Override
@@ -67,7 +86,9 @@ public class Song {
         return new StringJoiner(", ", Song.class.getSimpleName() + "[", "]")
                 .add("songId=" + songId)
                 .add("songName='" + songName + "'")
-                .add("duration=" + duration)
+                .add("artistName='" + artistName + "'")
+                .add("genre='" + genre + "'")
+                .add("duration='" + duration + "'")
                 .toString();
     }
 }
