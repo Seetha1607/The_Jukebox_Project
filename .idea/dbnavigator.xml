@@ -28,7 +28,7 @@
     <loaded-nodes />
   </component>
   <component name="DBNavigator.Project.DatabaseConsoleManager">
-    <connection id="2f7787e3-2b65-4435-8df6-56c527031f34">
+    <connection id="b4aed733-7f9f-4a0b-8dd9-e8aeaa490034">
       <console name="Connection" type="STANDARD" schema="mysql" session="Main" />
     </connection>
   </component>
@@ -36,10 +36,10 @@
     <open-files />
   </component>
   <component name="DBNavigator.Project.DatabaseSessionManager">
-    <connection id="2f7787e3-2b65-4435-8df6-56c527031f34" />
+    <connection id="b4aed733-7f9f-4a0b-8dd9-e8aeaa490034" />
   </component>
   <component name="DBNavigator.Project.DatasetFilterManager">
-    <filter-actions connection-id="2f7787e3-2b65-4435-8df6-56c527031f34" dataset="jukebox.album" active-filter-id="" />
+    <filter-actions connection-id="b4aed733-7f9f-4a0b-8dd9-e8aeaa490034" dataset="jukebox.song" active-filter-id="" />
   </component>
   <component name="DBNavigator.Project.EditorStateManager">
     <last-used-providers />
@@ -48,7 +48,7 @@
     <retain-sticky-names value="false" />
   </component>
   <component name="DBNavigator.Project.FileConnectionMappingManager">
-    <mapping file-url="file://$PROJECT_DIR$/src/main/resources/sql/jukebox_database_queries.sql" connection-id="2f7787e3-2b65-4435-8df6-56c527031f34" session-id="MAIN" current-schema="jukebox" />
+    <mapping file-url="file://$PROJECT_DIR$/src/main/resources/sql/jukebox_database_queries.sql" connection-id="0801afaf-f6c5-4216-9f6c-509dee207cf9" session-id="MAIN" current-schema="jukebox" />
   </component>
   <component name="DBNavigator.Project.MethodExecutionManager">
     <method-browser />
@@ -73,7 +73,7 @@
   </component>
   <component name="DBNavigator.Project.Settings">
     <connections>
-      <connection id="2f7787e3-2b65-4435-8df6-56c527031f34" active="true" signed="true">
+      <connection id="b4aed733-7f9f-4a0b-8dd9-e8aeaa490034" active="true" signed="true">
         <database>
           <name value="Connection" />
           <description value="" />

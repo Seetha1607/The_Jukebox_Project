@@ -9,15 +9,12 @@ package com.niit.jdp.repository;
 
 import com.niit.jdp.model.Song;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.time.LocalTime;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SongRepository {
+
+public class SongRepository implements Repository<Song> {
 
     public List<Song> getAll(Connection connection) throws SQLException {
 
@@ -26,17 +23,60 @@ public class SongRepository {
         try (Statement statement = connection.createStatement()) {
             ResultSet songsResultSet = statement.executeQuery(readQuery);
             while (songsResultSet.next()) {
-                int serialNumber = songsResultSet.getInt("serial_number");
+                int songId = songsResultSet.getInt("song_id");
                 String songName = songsResultSet.getString("song_name");
-                LocalTime duration = songsResultSet.getTime("duration").toLocalTime();
-                Song songs = new Song(serialNumber, songName, duration);
+                String artistName = songsResultSet.getString("artist_name");
+                String genre = songsResultSet.getString("genre");
+                String duration = songsResultSet.getString("duration");
+                String songPath = songsResultSet.getString("Song path");
+                Song songs = new Song(songId, songName, artistName, genre, duration, songPath);
                 songsList.add(songs);
             }
         }
         return songsList;
     }
 
-    public LocalTime remainingDuration(Connection connection, LocalTime duration) {
-        return null;
+    public Song getById(Connection connection, int id) throws SQLException {
+        String searchQuery = "SELECT * FROM `jukebox`.`song` WHERE(`song_id` = ?);";
+        Song songs = new Song();
+        try (PreparedStatement preparedStatement = connection.prepareStatement(searchQuery)) {
+            preparedStatement.setInt(1, id);
+            ResultSet songsResultSet = preparedStatement.executeQuery();
+            while (songsResultSet.next()) {
+                int songId = songsResultSet.getInt("song_id");
+                String songName = songsResultSet.getString("song_name");
+                String artistName = songsResultSet.getString("artist_name");
+                String genre = songsResultSet.getString("genre");
+                String duration = songsResultSet.getString("duration");
+                String songPath = songsResultSet.getString("Song path");
+                songs = new Song(songId, songName, artistName, genre, duration, songPath);
+            }
+        }
+        return songs;
+    }
+
+    public boolean add(Connection connection, Song song) throws SQLException {
+        String insertQuery = "INSERT INTO `jukebox`.`song` (`song_name`, `duration`, `artist_name`, `genre`, `Song path`) VALUES (?, ?, ?, ?, ?);";
+        int numberOfRowsAffected;
+        try (PreparedStatement preparedStatement = connection.prepareStatement(insertQuery)) {
+            preparedStatement.setInt(1, song.getSongId());
+            preparedStatement.setString(2, song.getSongName());
+            preparedStatement.setString(3, song.getDuration());
+            preparedStatement.setString(4, song.getArtistName());
+            preparedStatement.setString(5, song.getGenre());
+            preparedStatement.setString(6, song.getSongPath());
+            numberOfRowsAffected = preparedStatement.executeUpdate();
+        }
+        return numberOfRowsAffected > 0;
+    }
+
+    public boolean deleteById(Connection connection, int id) throws SQLException {
+        String deleteQuery = "DELETE FROM `jukebox`.`song` WHERE (`song_id` = ?);";
+        int numberOfRowsAffected;
+        try (PreparedStatement preparedStatement = connection.prepareStatement(deleteQuery)) {
+            preparedStatement.setInt(1, id);
+            numberOfRowsAffected = preparedStatement.executeUpdate();
+        }
+        return numberOfRowsAffected > 0;
     }
 }

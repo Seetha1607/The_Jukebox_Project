@@ -49,6 +49,7 @@ public class Playlist {
         this.songs = songs;
     }
 
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -67,7 +68,7 @@ public class Playlist {
         return new StringJoiner(", ", Playlist.class.getSimpleName() + "[", "]")
                 .add("playlistId=" + playlistId)
                 .add("playlistName='" + playlistName + "'")
-                .add("songs=" + songs)
+                .add("songId=" + songs)
                 .toString();
     }
 }
