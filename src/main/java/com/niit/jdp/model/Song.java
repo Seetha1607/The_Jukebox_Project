@@ -16,7 +16,6 @@ public class Song {
     private String artistName;
     private String genre;
     private String duration;
-
     private String songPath;
 
     public Song() {
