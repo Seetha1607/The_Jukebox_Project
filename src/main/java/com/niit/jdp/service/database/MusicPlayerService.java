@@ -10,10 +10,53 @@ package com.niit.jdp.service.database;
 import javax.sound.sampled.*;
 import java.io.File;
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.Scanner;
 
 public class MusicPlayerService {
-    public void play(String songPath) {
-        // 2. a file object that contains our song
+    public void play(Connection connection, String songPath) throws SQLException {
+
+        int playlistID;
+        ResultSet resultSet1;
+        try (Statement statement = connection.createStatement()) {
+            Scanner input = new Scanner(System.in);
+            playlistID = input.nextInt();
+            resultSet1 = statement.executeQuery("SELECT * FROM `playlist` WHERE playlist_id = '" + playlistID + "'");
+        }
+        if (playlistID == 1) {
+            songPath = "src/main/resources/songs/Believer-Imagine-Dragons.wav";
+        } else if (playlistID == 2) {
+            songPath = "src/main/resources/songs/Dance-Monkey-Tones-And-I.wav";
+        } else if (playlistID == 3) {
+            songPath = "src/main/resources/songs/Girls-Like-You-Maroon-5-Feat-Cardi-B.wav";
+        } else if (playlistID == 4) {
+            songPath = "src/main/resources/songs/Love-Yourself-Justin-Bieber.wav";
+        } else if (playlistID == 5) {
+            songPath = "src/main/resources/songs/Lovely-Billie-Eilish.wav";
+        } else if (playlistID == 6) {
+            songPath = "src/main/resources/songs/Memories-Maroon-5.wav";
+        } else if (playlistID == 7) {
+            songPath = "src/main/resources/songs/Payphone-Maroon-5-Feat-Wiz-Khalifa.wav";
+        } else if (playlistID == 8) {
+            songPath = "src/main/resources/songs/Perfect-Ed-Sheeran.wav";
+        } else if (playlistID == 9) {
+            songPath = "src/main/resources/songs/Senorita-Camila-Cabello.wav";
+        } else if (playlistID == 10) {
+            songPath = "src/main/resources/songs/The-Weeknd-Blinding-Lights.wav";
+        } else if (playlistID == 11) {
+            songPath = "src/main/resources/songs/Umbrella-Rihanna.wav";
+        } else if (playlistID == 12) {
+            songPath = "src/main/resources/songs/Unstoppable-Sia.wav";
+        } else if (playlistID == 13) {
+            songPath = "src/main/resources/songs/We-Dont-Talk-Anymore-Charlie-Puth-Feat-Selena-Gomez.wav";
+        } else if (playlistID == 14) {
+            songPath = "src/main/resources/songs/What-Makes-You-Beautiful-Harry-Styles.wav";
+        } else if (playlistID == 15) {
+            songPath = "src/main/resources/songs/Who-Says-Selena-Gomez.wav";
+        }
         File songFile = new File(songPath);
         try {
             // 3. an object of the AudioInputStream class

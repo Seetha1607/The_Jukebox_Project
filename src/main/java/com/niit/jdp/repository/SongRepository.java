@@ -59,12 +59,11 @@ public class SongRepository implements Repository<Song> {
         String insertQuery = "INSERT INTO `jukebox`.`song` (`song_name`, `duration`, `artist_name`, `genre`, `Song path`) VALUES (?, ?, ?, ?, ?);";
         int numberOfRowsAffected;
         try (PreparedStatement preparedStatement = connection.prepareStatement(insertQuery)) {
-            preparedStatement.setInt(1, song.getSongId());
-            preparedStatement.setString(2, song.getSongName());
-            preparedStatement.setString(3, song.getDuration());
-            preparedStatement.setString(4, song.getArtistName());
-            preparedStatement.setString(5, song.getGenre());
-            preparedStatement.setString(6, song.getSongPath());
+            preparedStatement.setString(1, song.getSongName());
+            preparedStatement.setString(2, song.getDuration());
+            preparedStatement.setString(3, song.getArtistName());
+            preparedStatement.setString(4, song.getGenre());
+            preparedStatement.setString(5, song.getSongPath());
             numberOfRowsAffected = preparedStatement.executeUpdate();
         }
         return numberOfRowsAffected > 0;

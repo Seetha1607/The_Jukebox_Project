@@ -8,7 +8,6 @@
 package com.niit.jdp.model;
 
 import java.util.Objects;
-import java.util.StringJoiner;
 
 public class Song {
     private int songId;
@@ -93,13 +92,7 @@ public class Song {
 
     @Override
     public String toString() {
-        return new StringJoiner(", ", Song.class.getSimpleName() + "[", "]")
-                .add("songId=" + songId)
-                .add("songName='" + songName + "'")
-                .add("artistName='" + artistName + "'")
-                .add("genre='" + genre + "'")
-                .add("duration='" + duration + "'")
-                .add("songPath='" + songPath + "'")
-                .toString();
+        return "Song ID : " + getSongId() + ", Song Name : " + getSongName()
+                + ", Artist Name : " + getArtistName() + ", Genre : " + getGenre() + ", Duration : " + getDuration();
     }
 }

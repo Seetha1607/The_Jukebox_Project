@@ -9,7 +9,6 @@ package com.niit.jdp.model;
 
 import java.util.List;
 import java.util.Objects;
-import java.util.StringJoiner;
 
 public class Playlist {
     private int playlistId;
@@ -65,10 +64,7 @@ public class Playlist {
 
     @Override
     public String toString() {
-        return new StringJoiner(", ", Playlist.class.getSimpleName() + "[", "]")
-                .add("playlistId=" + playlistId)
-                .add("playlistName='" + playlistName + "'")
-                .add("songId=" + songs)
-                .toString();
+        return "Playlist ID : " + getPlaylistId() + ", Playlist Name : " + getPlaylistName() +
+                ", Songs : " + getSongs();
     }
 }
