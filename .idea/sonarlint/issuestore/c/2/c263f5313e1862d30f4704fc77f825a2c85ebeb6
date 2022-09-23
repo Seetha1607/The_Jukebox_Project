@@ -1,0 +1,6 @@
+
+ñ
+java:S1130&"yRemove the declaration of thrown exception 'java.lang.ClassNotFoundException', as it cannot be thrown from method's body.(ö„—¡8éçê˙µ0
+]	java:S125("<This block of commented-out lines of code should be removed.(≠ä†Ö˘ˇˇˇˇ8êçê˙µ0
+Z	java:S1066"9Replace this use of System.out or System.err by a logger.(ú·å˛¯ˇˇˇˇ8ëçê˙µ0
+Z	java:S1068"9Replace this use of System.out or System.err by a logger.(ÓéËè˝ˇˇˇˇ8íçê˙µ0
