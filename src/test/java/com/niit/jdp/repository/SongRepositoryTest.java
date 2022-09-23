@@ -14,11 +14,11 @@ class SongRepositoryTest {
     SongRepository songRepository = null;
     Song song;
     DatabaseService databaseService = new DatabaseService();
-    Connection connection = databaseService.getConnection();
+
 
 
     @BeforeEach
-    void setUp() throws SQLException, ClassNotFoundException {
+    void setUp() {
         songRepository = new SongRepository();
         song = new Song();
         databaseService = new DatabaseService();
@@ -45,8 +45,8 @@ class SongRepositoryTest {
     void getSongByIdFailure() throws SQLException, ClassNotFoundException {
         databaseService.connect();
         Connection connection = databaseService.getConnection();
-        Song output = songRepository.getById(connection, 10);
-        boolean expectedOutput = songRepository.deleteById(connection, song.getSongId());
+        Song expectedOutput = songRepository.getById(connection, song.getSongId());
+        boolean output = songRepository.deleteById(connection, song.getSongId());
         Assertions.assertNotEquals(expectedOutput, output);
     }
 
