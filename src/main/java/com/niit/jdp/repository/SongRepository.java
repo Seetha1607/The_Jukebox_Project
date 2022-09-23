@@ -55,7 +55,7 @@ public class SongRepository implements Repository<Song> {
         return songs;
     }
 
-    public boolean add(Connection connection, Song song) throws SQLException {
+    public boolean addSong(Connection connection, Song song) throws SQLException {
         String insertQuery = "INSERT INTO `jukebox`.`song` (`song_name`, `duration`, `artist_name`, `genre`, `Song path`) VALUES (?, ?, ?, ?, ?);";
         int numberOfRowsAffected;
         try (PreparedStatement preparedStatement = connection.prepareStatement(insertQuery)) {
@@ -68,6 +68,7 @@ public class SongRepository implements Repository<Song> {
         }
         return numberOfRowsAffected > 0;
     }
+
 
     public boolean deleteById(Connection connection, int id) throws SQLException {
         String deleteQuery = "DELETE FROM `jukebox`.`song` WHERE (`song_id` = ?);";

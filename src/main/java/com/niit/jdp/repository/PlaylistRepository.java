@@ -14,21 +14,14 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PlaylistRepository implements Repository<Playlist> {
+public class PlaylistRepository {
 
-    @Override
-    public boolean add(Connection connection, Playlist playlist) throws SQLException {
+    public boolean createPlaylist(Connection connection, int playlistID, String playlist_name) throws SQLException {
+
         String insertQuery =
-                "INSERT INTO `jukebox`.`playlist` " +
-                        "(`playlist_name`, `songs`) " +
-                        "VALUES (?, ?);";
-        int numberOfRowsAffected = 0;
-        List<Song> songList = new SongRepository().getAll(connection);
-        List<Song> songs = new ArrayList<>();
-        Playlist playlists = new Playlist();
+                "INSERT INTO `jukebox`.`playlist` ('playlist ID`,`playlist_Name`) VALUES ('" + playlistID + "','" + playlist_name + "')";
+        int numberOfRowsAffected;
         try (PreparedStatement preparedStatement = connection.prepareStatement(insertQuery)) {
-            // 3. set the values of the query parameters
-            preparedStatement.setString(1, playlist.getPlaylistName());
             numberOfRowsAffected = preparedStatement.executeUpdate();
         }
         return numberOfRowsAffected > 0;
@@ -54,7 +47,7 @@ public class PlaylistRepository implements Repository<Playlist> {
         }
     }
 
-    @Override
+
     public Playlist getById(Connection connection, int id) throws SQLException {
         String searchQuery = "SELECT * FROM `jukebox`.`playlist` WHERE(`playlist_id` = ?);";
         List<Song> songList = new SongRepository().getAll(connection);
@@ -75,7 +68,7 @@ public class PlaylistRepository implements Repository<Playlist> {
         return playlist;
     }
 
-    @Override
+
     public boolean deleteById(Connection connection, int id) throws SQLException {
         String deleteQuery = "DELETE FROM `jukebox`.`playlist` WHERE (`playlist_id` = ?);";
         int numberOfRowsAffected;
@@ -84,5 +77,20 @@ public class PlaylistRepository implements Repository<Playlist> {
             numberOfRowsAffected = preparedStatement.executeUpdate();
         }
         return numberOfRowsAffected > 0;
+    }
+
+    public void displayPlaylistWithSongName(Connection connection) throws SQLException {
+        String readQuery = "SELECT playlist.playlist_id AS 'Playlist ID',\n" +
+                "       playlist.playlist_name AS 'Playlist Name',\n" +
+                "       song.song_name AS 'Song Name'\n" +
+                "       FROM playlist\n" +
+                "       JOIN song ON (song.song_id = playlist.songs);";
+
+        Statement statement = connection.createStatement();
+        ResultSet resultSet = statement.executeQuery(readQuery);
+        while (resultSet.next()) {
+            System.out.printf("%s  %s  %s", "Playlist ID " + resultSet.getInt(1) + " ", "Playlist Name  " + resultSet.getString(2) + " ", "Song Name  " + resultSet.getString(3));
+            System.out.println();
+        }
     }
 }

@@ -18,7 +18,7 @@ public class Main {
             System.out.println("Welcome to the JukeBox Catalogue");
             System.out.println("============================================");
             System.out.println("1. View all playlist");
-            System.out.println("2. Search song by playlist ID");
+            System.out.println("2. Search full song details by playlist ID");
             System.out.println("3: Create playlist using existing songs");
             System.out.println("4. Play song from playlist");
             System.out.println("5. Exit");
@@ -39,9 +39,14 @@ public class Main {
                     case 1:
 
                         System.out.println("View all Playlist");
-                        playlistRepository.getAll(connection).forEach(System.out::println);
+                        playlistRepository.displayPlaylistWithSongName(connection);
+                        break;
 
-                        System.out.println("Enter id:");
+                    case 2:
+
+                        playlistRepository.displayPlaylistWithSongName(connection);
+                        System.out.println("-------------------------------------------------------");
+                        System.out.println("Enter Playlist ID to view full song details :");
                         int id = scanner.nextInt();
                         Playlist byId = playlistRepository.getById(connection, id);
                         if (byId.getPlaylistId() == 0) {
@@ -51,15 +56,23 @@ public class Main {
                         }
                         break;
 
-                    case 2:
-
-                        break;
-
                     case 3:
-                        System.out.println("View all Songs from Playlist");
-                        songRepository.getAll(connection).forEach(System.out::println);
-                        break;
 
+                        System.out.println("Enter you're own Playlist Name : ");
+                        String playlistName = scanner.next();
+                        System.out.println("Your Playlist Name is created : " + playlistName);
+                        System.out.println("Enter 1 to add song to your playlist : ");
+                        int i = scanner.nextInt();
+                        while (i == 1) {
+                            System.out.println("Enter playlist ID to add into the playlist :");
+                            int playlistID = scanner.nextInt();
+                            playlistRepository.createPlaylist(connection, playlistID, playlistName);
+                            System.out.println("Enter 2 to continue adding song to your playlist : ");
+                            i = scanner.nextInt();
+                            System.out.println("Enter 0 to stop adding :");
+                            i = scanner.nextInt();
+                            break;
+                        }
                     case 4:
                         SongRepository songRepository1 = new SongRepository();
                         songRepository1.getAll(connection).forEach(System.out::println);
