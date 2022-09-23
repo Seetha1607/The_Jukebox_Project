@@ -2,7 +2,6 @@ package com.niit.jdp;
 
 import com.niit.jdp.model.Playlist;
 import com.niit.jdp.repository.PlaylistRepository;
-import com.niit.jdp.repository.SongRepository;
 import com.niit.jdp.service.database.DatabaseService;
 import com.niit.jdp.service.database.MusicPlayerService;
 
@@ -12,7 +11,7 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        int choice = 0;
+        int choice;
 
         do {
             System.out.println("Welcome to the JukeBox Catalogue");
@@ -31,7 +30,6 @@ public class Main {
             DatabaseService databaseService = new DatabaseService();
             try {
                 databaseService.connect();
-                SongRepository songRepository = new SongRepository();
                 PlaylistRepository playlistRepository = new PlaylistRepository();
                 Connection connection = databaseService.getConnection();
 
@@ -68,17 +66,21 @@ public class Main {
                             int playlistID = scanner.nextInt();
                             playlistRepository.createPlaylist(connection, playlistID, playlistName);
                             System.out.println("Enter 2 to continue adding song to your playlist : ");
-                            i = scanner.nextInt();
                             System.out.println("Enter 0 to stop adding :");
                             i = scanner.nextInt();
-                            break;
                         }
+                        break;
                     case 4:
-                        SongRepository songRepository1 = new SongRepository();
-                        songRepository1.getAll(connection).forEach(System.out::println);
+                        System.out.println();
+                        System.out.println("Viewing playlist to select ID");
+                        System.out.println();
+                        playlistRepository.displayPlaylistWithSongName(connection);
                         MusicPlayerService musicPlayerService = new MusicPlayerService();
-                        String songPath = scanner.next();
+                        String songPath = null;
                         musicPlayerService.play(connection, songPath);
+                        break;
+                    default:
+                        throw new IllegalStateException("Unexpected value: " + choice);
                 }
             } catch (ClassNotFoundException | SQLException exception) {
                 System.err.println("Could not connect to the database!");
