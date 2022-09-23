@@ -11,7 +11,6 @@ import javax.sound.sampled.*;
 import java.io.File;
 import java.io.IOException;
 import java.sql.Connection;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Scanner;
@@ -20,13 +19,12 @@ public class MusicPlayerService {
     public void play(Connection connection, String songPath) throws SQLException {
 
         int playlistID;
-        ResultSet resultSet1;
         try (Statement statement = connection.createStatement()) {
             Scanner input = new Scanner(System.in);
             System.out.println();
             System.out.println("Select playlist ID to play your song : ");
             playlistID = input.nextInt();
-            resultSet1 = statement.executeQuery("SELECT * FROM `playlist` WHERE playlist_id = '" + playlistID + "'");
+            statement.executeQuery("SELECT * FROM `playlist` WHERE playlist_id = '" + playlistID + "'");
         }
         if (playlistID == 1) {
             songPath = "src/main/resources/songs/Believer-Imagine-Dragons.wav";

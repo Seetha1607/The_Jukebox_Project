@@ -18,8 +18,7 @@ public class PlaylistRepository {
 
     public boolean createPlaylist(Connection connection, int playlistID, String playlist_name) throws SQLException {
 
-        String insertQuery =
-                "INSERT INTO `jukebox`.`playlist` ('playlist ID`,`playlist_Name`) VALUES ('" + playlistID + "','" + playlist_name + "')";
+        String insertQuery = "INSERT INTO `jukebox`.`playlist` ('playlist ID`,`playlist_Name`) VALUES ('" + playlistID + "','" + playlist_name + "')";
         int numberOfRowsAffected;
         try (PreparedStatement preparedStatement = connection.prepareStatement(insertQuery)) {
             numberOfRowsAffected = preparedStatement.executeUpdate();
@@ -80,14 +79,12 @@ public class PlaylistRepository {
     }
 
     public void displayPlaylistWithSongName(Connection connection) throws SQLException {
-        String readQuery = "SELECT playlist.playlist_id AS 'Playlist ID',\n" +
-                "       playlist.playlist_name AS 'Playlist Name',\n" +
-                "       song.song_name AS 'Song Name'\n" +
-                "       FROM playlist\n" +
-                "       JOIN song ON (song.song_id = playlist.songs);";
+        String readQuery = "SELECT playlist.playlist_id AS 'Playlist ID',\n" + "       playlist.playlist_name AS 'Playlist Name',\n" + "       song.song_name AS 'Song Name'\n" + "       FROM playlist\n" + "       JOIN song ON (song.song_id = playlist.songs);";
 
-        Statement statement = connection.createStatement();
-        ResultSet resultSet = statement.executeQuery(readQuery);
+        ResultSet resultSet;
+        try (Statement statement = connection.createStatement()) {
+            resultSet = statement.executeQuery(readQuery);
+        }
         while (resultSet.next()) {
             System.out.printf("%s  %s  %s", "Playlist ID " + resultSet.getInt(1) + " ", "Playlist Name  " + resultSet.getString(2) + " ", "Song Name  " + resultSet.getString(3));
             System.out.println();
